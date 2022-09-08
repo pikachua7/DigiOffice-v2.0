@@ -11,7 +11,7 @@ contract DigiOffice{
     string private signedURL; // url after signing by authority
 
     address private authorityAddress;  //address of authority to be given
-    address private superAuthority; // supreme authority
+    address private superAuthorityAddress; // supreme authority
 
     bool completedSignature = false;
 
@@ -19,12 +19,12 @@ contract DigiOffice{
 
     event UpdatedDocumentURL(string documentURL, string _updatedURL);
 
-    constructor(string memory _nameContract, address _authorityAddress, address _superAuthority){
+    constructor(string memory _nameContract, address _authorityAddress, address _superAuthorityAddress){
         nameContract = _nameContract;
         authorityAddress = _authorityAddress;
-        superAuthority = _superAuthority;
+        superAuthorityAddress = _superAuthorityAddress;
         superAdmins.push(authorityAddress);
-        superAdmins.push(superAuthority);
+        superAdmins.push(superAuthorityAddress);
     }
 
     modifier onlyAuthority(){
@@ -57,11 +57,15 @@ contract DigiOffice{
     }
 
     function getAuthority() view external returns (address) {
-        return superAdmins[0];
+        return authorityAddress;
     }
 
     function getSuperAuthority() view external returns (address) {
-        return superAdmins[1];
+        return superAuthorityAddress;
+    }
+
+    function getContractName() view external returns (string memory){
+        return nameContract;
     }
     
 }
