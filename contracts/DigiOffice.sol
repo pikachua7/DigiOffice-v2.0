@@ -11,33 +11,22 @@ contract DigiOffice{
     string private signedURL; // url after signing by authority
 
     address private authorityAddress;  //address of authority to be given
-    address private superAuthorityAddress; // supreme authority
 
     bool completedSignature = false;
 
-    address[] private superAdmins;
-
     event UpdatedDocumentURL(string documentURL, string _updatedURL);
 
-    constructor(string memory _nameContract, address _authorityAddress, address _superAuthorityAddress){
+    constructor(string memory _nameContract, address _authorityAddress){
         nameContract = _nameContract;
         authorityAddress = _authorityAddress;
-        superAuthorityAddress = _superAuthorityAddress;
-        superAdmins.push(authorityAddress);
-        superAdmins.push(superAuthorityAddress);
     }
 
     modifier onlyAuthority(){
-        require(address(msg.sender) == superAdmins[0]);
+        require(address(msg.sender) == authorityAddress);
         _;
     }
 
-    modifier onlySuperAuthority(){
-        require(address(msg.sender) == superAdmins[1]);
-        _;
-    }
-
-    function updateDocumentURL(string memory _updatedURL) external onlyAuthority onlySuperAuthority{
+    function updateDocumentURL(string memory _updatedURL) external onlyAuthority {
         emit UpdatedDocumentURL(documentURL, _updatedURL);
         documentURL = _updatedURL;
     }
@@ -48,7 +37,7 @@ contract DigiOffice{
     }
 
     // Only the Authority and SuperAuthority can see the signed documents
-    function getSignedURL() view external onlyAuthority onlySuperAuthority returns (string memory){
+    function getSignedURL() view external onlyAuthority returns (string memory){
         return signedURL;
     }
 
@@ -58,10 +47,6 @@ contract DigiOffice{
 
     function getAuthority() view external returns (address) {
         return authorityAddress;
-    }
-
-    function getSuperAuthority() view external returns (address) {
-        return superAuthorityAddress;
     }
 
     function getContractName() view external returns (string memory){
