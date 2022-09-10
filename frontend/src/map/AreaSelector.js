@@ -13,7 +13,7 @@ const AreaSelector = () => {
     return (
         <React.Fragment>
             <MapDialog show={show} StateName={STName} closeModal={handleClose} />
-            <div style={{ backgroundColor: 'black' }}>
+            <div>
                 <MapChart setTooltipContent={setContent} setStateName={setSTName} setShowDistrict={setShow} />
                 <ReactTooltip>{content}</ReactTooltip>
             </div>
