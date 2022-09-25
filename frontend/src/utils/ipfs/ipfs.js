@@ -26,13 +26,17 @@ export const uploadFiles = async (title, description, authorityAddress, contract
 
     for (let i in files) {
         const file = files[i];
+        console.log("file : ", file);
         const fileObject = new Moralis.File(file.name, file);
+        console.log("fileObject : ", fileObject);
         await fileObject.saveIPFS();
+        console.log("saved to ipfs")
         outputObject.files.push({
             name: file.name,
             hash: fileObject.hash(),
             url: fileObject.ipfs()
         });
+        console.log("outputObject : ", outputObject);
     }
 
     return await saveToIPFS(outputObject);
