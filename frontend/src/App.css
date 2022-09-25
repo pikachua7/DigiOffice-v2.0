@@ -1,38 +1,83 @@
-.App {
+@import "~antd/dist/antd.css";
+
+/* .App {
+} */
+
+.hero-image {
+  width: 200px;
+}
+
+.hero-section {
+  margin-top: 150px;
+}
+
+.white {
+  background: white;
+}
+.boxed {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 80vh;
+  margin-top: 50px;
+}
+
+.success-text {
+  color: green;
+}
+
+.centered {
+  margin: 0 auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.error-text {
+  color: red;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.dropzone {
+  border: 1px dotted black;
+  padding: 25px;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.hero-slogan-section {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 50px;
+  margin-left: 25px;
 }
 
-.App-link {
-  color: #61dafb;
+.hero-slogan {
+  font-size: 28px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.vertical-margin,
+.standard-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.ant-input,
+input,
+textarea {
+  max-width: 600px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.header-logo {
+  height: 50px;
+}
+
+.ant-layout-header {
+  background: white;
 }
